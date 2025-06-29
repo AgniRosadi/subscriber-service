@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: subscriber-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/springdb
+    username: localuser
+    password: secure123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # Hanya untuk dev, production sebaiknya 'validate' atau 'none'
+    show-sql: true
+    open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        format_sql: true
+
+  redis:
+    host: localhost
+    port: 6379
+
+  profiles:
+    active: dev   # Supaya nanti bisa bikin application-dev.yml, application-prod.yml
+
+server:
+  port: 8084
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    com.zaxxer.hikari: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE
+    org.hibernate.orm.jdbc.bind: TRACE
